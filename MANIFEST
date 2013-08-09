@@ -8,5 +8,6 @@ eg/suddenly_death.pl
 lib/Caroline.pm
 lib/Term/ReadLine/Caroline.pm
 t/00_compile.t
+t/01_history_max_len.t
 META.yml
 MANIFEST
