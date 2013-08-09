@@ -27,7 +27,7 @@ no_index:
 provides:
   Caroline:
     file: lib/Caroline.pm
-    version: 0.01
+    version: 0.02
   Caroline::State:
     file: lib/Caroline.pm
   Term::ReadLine::Caroline:
@@ -43,4 +43,4 @@ resources:
   bugtracker: https://github.com/tokuhirom/Caroline/issues
   homepage: https://github.com/tokuhirom/Caroline
   repository: git://github.com/tokuhirom/Caroline.git
-version: 0.01
+version: 0.02
