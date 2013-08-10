@@ -58,7 +58,7 @@
    "provides" : {
       "Caroline" : {
          "file" : "lib/Caroline.pm",
-         "version" : "0.05"
+         "version" : "0.06"
       },
       "Caroline::State" : {
          "file" : "lib/Caroline.pm"
@@ -78,7 +78,7 @@
          "web" : "https://github.com/tokuhirom/Caroline"
       }
    },
-   "version" : "0.05",
+   "version" : "0.06",
    "x_contributors" : [
       "mattn <mattn.jp@gmail.com>"
    ]
