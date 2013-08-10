@@ -7,7 +7,7 @@ use Storable;
 use Text::VisualWidth::PP 0.03 qw(vwidth);
 use Term::ReadKey qw(GetTerminalSize ReadLine ReadKey ReadMode);
 
-our $VERSION = "0.06";
+our $VERSION = "0.07";
 
 our @EXPORT = qw( caroline );
 
@@ -186,7 +186,7 @@ sub edit {
         my $c = ReadKey(0) or return $state->buf;
         my $cc = ord($c);
 
-        if ($cc == 9 && defined $self->{completion_callback}) {
+        if ($cc == TAB && defined $self->{completion_callback}) {
             $c = $self->complete_line($state);
             return undef unless defined $c;
             $cc = ord($c);
@@ -269,6 +269,7 @@ sub edit {
         } elsif ($cc == CTRL_W) { # ctrl-w
             $self->edit_delete_prev_word($state);
         } else {
+            $self->debug("inserting $cc\n");
             $self->edit_insert($state, $c);
         }
     }
@@ -314,6 +315,8 @@ sub search {
     my ($self, $state) = @_;
 
     my $query = '';
+    local $state->{query} = '';
+    LOOP:
     while (1) {
         my $c = ReadKey(0) or return undef;
         my $cc = ord($c);
@@ -324,16 +327,16 @@ sub search {
             || $cc == CTRL_F
             || $cc == ENTER
         ) {
-            $state->query('');
             return;
         }
         if ($cc == BACKSPACE || $cc == CTRL_H) {
+            $self->debug("ctrl-h in searching\n");
             $query =~ s/.\z//;
-            next;
+        } else {
+            $query .= $c;
         }
         $self->debug("C: $cc\n");
 
-        $query .= $c;
         $state->query($query);
         $self->debug("Searching '$query'\n");
         SEARCH:
@@ -342,10 +345,11 @@ sub search {
                 $state->buf($hist);
                 $state->pos($idx);
                 $self->refresh_line($state);
-                last SEARCH;
+                next LOOP;
             }
         }
         $self->beep();
+        $self->refresh_line($state);
     }
 }
 
@@ -461,9 +465,14 @@ sub refresh_multi_line {
     my ($self, $state) = @_;
 
     my $plen = vwidth($state->prompt);
+    $self->debug($state->buf.  "\n");
 
     # rows used by current buf
     my $rows = int(($plen + vwidth($state->buf) + $state->cols -1) / $state->cols);
+    if (defined $state->query) {
+        $rows++;
+    }
+
     # cursor relative row
     my $rpos = int(($plen + $state->oldpos + $state->cols) / $state->cols);
 
@@ -497,6 +506,9 @@ sub refresh_multi_line {
     # Write the prompt and the current buffer content
     print $state->prompt;
     print $state->buf;
+    if (defined $state->query) {
+        print "\015\nSearch: " . $state->query;
+    }
 
     # If we are at the very end of the screen with our prompt, we need to
     # emit a newline and move the prompt to the first column
@@ -587,15 +599,11 @@ sub edit_insert {
     my ($self, $state, $c) = @_;
     if (length($state->buf) == $state->pos) {
         $state->{buf} .= $c;
-        $state->{pos}++;
-        if (!$self->{multi_line} && $state->width < $state->cols) {
-            # Avoid a full update of the line in the trivial case
-            print STDOUT $c;
-            STDOUT->flush;
-        } else {
-            $self->refresh_line($state);
-        }
+    } else {
+        substr($state->{buf}, $state->{pos}, 0) = $c;
     }
+    $state->{pos}++;
+    $self->refresh_line($state);
 }
 
 sub is_supported {
@@ -655,7 +663,7 @@ Caroline - Yet another line editing library
     use Caroline;
 
     my $c = Caroline->new;
-    while (defined(my $line = $c->readline('> ')) {
+    while (defined(my $line = $c->readline('> '))) {
         if ($line =~ /\S/) {
             print eval $line;
         }
@@ -703,6 +711,7 @@ Set the limitation for max history size.
 
 You can write completion callback function like this:
 
+    use Caroline;
     my $c = Caroline->new(
         completion_callback => sub {
             my ($line) = @_;

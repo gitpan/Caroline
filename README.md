@@ -7,7 +7,7 @@ Caroline - Yet another line editing library
     use Caroline;
 
     my $c = Caroline->new;
-    while (defined(my $line = $c->readline('> ')) {
+    while (defined(my $line = $c->readline('> '))) {
         if ($line =~ /\S/) {
             print eval $line;
         }
@@ -44,6 +44,7 @@ Provides portable line editing library for Perl5 community.
 
         You can write completion callback function like this:
 
+            use Caroline;
             my $c = Caroline->new(
                 completion_callback => sub {
                     my ($line) = @_;
