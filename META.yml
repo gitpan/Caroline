@@ -3,6 +3,7 @@ abstract: 'Yet another line editing library '
 author:
   - 'tokuhirom <tokuhirom@gmail.com>'
 build_requires:
+  File::Temp: 0
   Test::More: 0.98
 configure_requires:
   CPAN::Meta: 0
@@ -27,7 +28,7 @@ no_index:
 provides:
   Caroline:
     file: lib/Caroline.pm
-    version: 0.04
+    version: 0.05
   Caroline::State:
     file: lib/Caroline.pm
   Term::ReadLine::Caroline:
@@ -43,6 +44,6 @@ resources:
   bugtracker: https://github.com/tokuhirom/Caroline/issues
   homepage: https://github.com/tokuhirom/Caroline
   repository: git://github.com/tokuhirom/Caroline.git
-version: 0.04
+version: 0.05
 x_contributors:
   - 'mattn <mattn.jp@gmail.com>'

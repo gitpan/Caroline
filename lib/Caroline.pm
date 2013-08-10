@@ -7,7 +7,7 @@ use Storable;
 use Text::VisualWidth::PP 0.03 qw(vwidth);
 use Term::ReadKey qw(GetTerminalSize ReadLine ReadKey ReadMode);
 
-our $VERSION = "0.04";
+our $VERSION = "0.05";
 
 our @EXPORT = qw( caroline );
 
@@ -247,6 +247,31 @@ sub edit {
         }
     }
     return $state->buf;
+}
+
+sub read_history_file {
+    my ($self, $filename) = @_;
+    open my $fh, '<:encoding(utf-8)', $filename
+        or return undef;
+    while (my $hist = <$fh>) {
+        chomp($hist);
+        $self->history_add($hist);
+    }
+    close $fh;
+    return 1;
+}
+
+sub write_history_file {
+    my ($self, $filename) = @_;
+
+    open my $fh, '>:encoding(utf-8)', $filename
+        or return undef;
+    for my $hist (@{$self->history}) {
+        next unless $hist =~ /\S/;
+        print $fh $hist . "\n";
+    }
+    close $fh;
+    return 1;
 }
 
 sub edit_delete {
@@ -642,6 +667,14 @@ Add $line to the history.
 
 Get the current history data in C< ArrayRef[Str] >.
 
+=item $caroline->write_history_file($filename)
+
+Write history data to the file.
+
+=item $caroline->read_history_file($filename)
+
+Read history data from history file.
+
 =back
 
 =head1 Multi byte character support
@@ -675,6 +708,8 @@ L<https://github.com/antirez/linenoise/blob/master/linenoise.c>
 =head1 AUTHOR
 
 tokuhirom E<lt>tokuhirom@gmail.comE<gt>
+
+mattn
 
 =cut
 

@@ -50,6 +50,7 @@
       },
       "test" : {
          "requires" : {
+            "File::Temp" : "0",
             "Test::More" : "0.98"
          }
       }
@@ -57,7 +58,7 @@
    "provides" : {
       "Caroline" : {
          "file" : "lib/Caroline.pm",
-         "version" : "0.04"
+         "version" : "0.05"
       },
       "Caroline::State" : {
          "file" : "lib/Caroline.pm"
@@ -77,7 +78,7 @@
          "web" : "https://github.com/tokuhirom/Caroline"
       }
    },
-   "version" : "0.04",
+   "version" : "0.05",
    "x_contributors" : [
       "mattn <mattn.jp@gmail.com>"
    ]

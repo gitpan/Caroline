@@ -9,5 +9,6 @@ lib/Caroline.pm
 lib/Term/ReadLine/Caroline.pm
 t/00_compile.t
 t/01_history_max_len.t
+t/02_history_file.t
 META.yml
 MANIFEST
