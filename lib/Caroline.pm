@@ -7,7 +7,7 @@ use Storable;
 use Text::VisualWidth::PP 0.03 qw(vwidth);
 use Term::ReadKey qw(GetTerminalSize ReadLine ReadKey ReadMode);
 
-our $VERSION = "0.07";
+our $VERSION = "0.08";
 
 our @EXPORT = qw( caroline );
 
@@ -183,7 +183,10 @@ sub edit {
     $self->debug("Columns: $state->{cols}\n");
 
     while (1) {
-        my $c = ReadKey(0) or return $state->buf;
+        my $c = ReadKey(0);
+        unless (defined $c) {
+            return $state->buf;
+        }
         my $cc = ord($c);
 
         if ($cc == TAB && defined $self->{completion_callback}) {
