@@ -58,7 +58,7 @@
    "provides" : {
       "Caroline" : {
          "file" : "lib/Caroline.pm",
-         "version" : "0.10"
+         "version" : "0.11"
       },
       "Caroline::State" : {
          "file" : "lib/Caroline.pm"
@@ -78,7 +78,7 @@
          "web" : "https://github.com/tokuhirom/Caroline"
       }
    },
-   "version" : "0.10",
+   "version" : "0.11",
    "x_contributors" : [
       "Ahmad M. Zawawi <ahmad.zawawi@gmail.com>",
       "mattn <mattn.jp@gmail.com>"
