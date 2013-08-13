@@ -4,6 +4,8 @@ use warnings;
 use utf8;
 use 5.008_001;
 
+our @ISA = qw(Term::ReadLine::Stub);
+
 use Caroline;
 
 sub ReadLine { __PACKAGE__ }
