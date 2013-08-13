@@ -1,5 +1,12 @@
 Revision history for Perl extension Caroline
 
+0.10 2013-08-13T04:06:55Z
+
+    - Fixes allow key handling on windows
+      (mattn)
+    - HOME/END key support
+      (mattn)
+
 0.09 2013-08-13T03:40:53Z
 
     - win32 fixes

@@ -7,7 +7,7 @@ use Storable;
 use Text::VisualWidth::PP 0.03 qw(vwidth);
 use Term::ReadKey qw(GetTerminalSize ReadLine ReadKey ReadMode);
 
-our $VERSION = "0.09";
+our $VERSION = "0.10";
 
 our @EXPORT = qw( caroline );
 
@@ -252,9 +252,10 @@ sub edit {
         } elsif ($cc == CTRL_N) { # ctrl-n
             $self->edit_history_next($state, $HISTORY_NEXT);
         } elsif ($cc == 27) { # escape sequence
-            next if $IS_WIN32;
             # Read the next two bytes representing the escape sequence
-            CORE::read(*STDIN, my $buf, 2)==2 or return undef;
+            my $buf = $self->readkey or return undef;
+            $buf .= $self->readkey or return undef;
+
             if ($buf eq "[D") { # left arrow
                 $self->edit_move_left($state);
             } elsif ($buf eq "[C") { # right arrow
@@ -263,6 +264,18 @@ sub edit {
                 $self->edit_history_next($state, $HISTORY_PREV);
             } elsif ($buf eq "[B") { # down arrow
                 $self->edit_history_next($state, $HISTORY_NEXT);
+            } elsif ($buf eq "[1") { # home
+                $buf = $self->readkey or return undef;
+                if ($buf eq '~') {
+                    $state->{pos} = 0;
+                    $self->refresh_line($state);
+                }
+            } elsif ($buf eq "[4") { # end
+                $buf = $self->readkey or return undef;
+                if ($buf eq '~') {
+                    $state->{pos} = length($state->buf);
+                    $self->refresh_line($state);
+                }
             }
             # TODO:
 #           else if (seq[0] == 91 && seq[1] > 48 && seq[1] < 55) {
