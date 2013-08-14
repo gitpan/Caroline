@@ -28,11 +28,13 @@ no_index:
 provides:
   Caroline:
     file: lib/Caroline.pm
-    version: 0.14
+    version: 0.15
   Caroline::State:
     file: lib/Caroline.pm
   Term::ReadLine::Caroline:
     file: lib/Term/ReadLine/Caroline.pm
+recommends:
+  Term::ReadLine: 0
 requires:
   Class::Accessor::Lite: 0.05
   POSIX: 0
@@ -44,7 +46,7 @@ resources:
   bugtracker: https://github.com/tokuhirom/Caroline/issues
   homepage: https://github.com/tokuhirom/Caroline
   repository: git://github.com/tokuhirom/Caroline.git
-version: 0.14
+version: 0.15
 x_contributors:
   - 'Ahmad M. Zawawi <ahmad.zawawi@gmail.com>'
   - 'mattn <mattn.jp@gmail.com>'

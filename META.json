@@ -39,6 +39,9 @@
          }
       },
       "runtime" : {
+         "recommends" : {
+            "Term::ReadLine" : "0"
+         },
          "requires" : {
             "Class::Accessor::Lite" : "0.05",
             "POSIX" : "0",
@@ -58,7 +61,7 @@
    "provides" : {
       "Caroline" : {
          "file" : "lib/Caroline.pm",
-         "version" : "0.14"
+         "version" : "0.15"
       },
       "Caroline::State" : {
          "file" : "lib/Caroline.pm"
@@ -78,7 +81,7 @@
          "web" : "https://github.com/tokuhirom/Caroline"
       }
    },
-   "version" : "0.14",
+   "version" : "0.15",
    "x_contributors" : [
       "Ahmad M. Zawawi <ahmad.zawawi@gmail.com>",
       "mattn <mattn.jp@gmail.com>"
