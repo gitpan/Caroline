@@ -4,7 +4,7 @@
       "tokuhirom <tokuhirom@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v0.5.6",
+   "generated_by" : "Minilla/v0.6.3",
    "license" : "perl_5",
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
@@ -44,6 +44,7 @@
          },
          "requires" : {
             "Class::Accessor::Lite" : "0.05",
+            "IO::Handle" : "0",
             "POSIX" : "0",
             "Storable" : "0",
             "Term::ReadKey" : "2.3",
@@ -61,7 +62,7 @@
    "provides" : {
       "Caroline" : {
          "file" : "lib/Caroline.pm",
-         "version" : "0.15"
+         "version" : "0.16"
       },
       "Caroline::State" : {
          "file" : "lib/Caroline.pm"
@@ -81,7 +82,7 @@
          "web" : "https://github.com/tokuhirom/Caroline"
       }
    },
-   "version" : "0.15",
+   "version" : "0.16",
    "x_contributors" : [
       "Ahmad M. Zawawi <ahmad.zawawi@gmail.com>",
       "mattn <mattn.jp@gmail.com>"
