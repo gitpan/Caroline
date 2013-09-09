@@ -5,10 +5,11 @@ use warnings;
 use POSIX qw(termios_h);
 use Storable;
 use Text::VisualWidth::PP 0.03 qw(vwidth);
+use Unicode::EastAsianWidth::Detect qw(is_cjk_lang);
 use Term::ReadKey qw(GetTerminalSize ReadLine ReadKey ReadMode);
 use IO::Handle;
 
-our $VERSION = "0.16";
+our $VERSION = "0.17";
 
 our @EXPORT = qw( caroline );
 
@@ -87,7 +88,7 @@ sub readline {
     $prompt = '> ' unless defined $prompt;
     STDOUT->autoflush(1);
 
-    local $Text::VisualWidth::PP::EastAsian = 1;
+    local $Text::VisualWidth::PP::EastAsian = is_cjk_lang;
 
     if ($self->is_supported && -t STDIN) {
         return $self->read_raw($prompt);
@@ -815,6 +816,12 @@ You can add the following code before call Caroline.
     use Term::Encoding qw(term_encoding);
     my $encoding = term_encoding();
     binmode *STDIN, ":encoding(${encoding})";
+
+=head1 About east Asian ambiguous width characters
+
+Caroline detects east Asian ambiguous character width from environment variable using L<Unicode::EastAsianWidth::Detect>.
+
+User need to set locale correctly. For more details, please read L<Unicode::EastAsianWidth::Detect>.
 
 =head1 LICENSE
 

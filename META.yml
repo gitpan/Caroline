@@ -10,7 +10,7 @@ configure_requires:
   CPAN::Meta::Prereqs: 0
   Module::Build: 0.38
 dynamic_config: 0
-generated_by: 'Minilla/v0.6.3, CPAN::Meta::Converter version 2.131560'
+generated_by: 'Minilla/v0.6.5, CPAN::Meta::Converter version 2.132510'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -28,7 +28,7 @@ no_index:
 provides:
   Caroline:
     file: lib/Caroline.pm
-    version: 0.16
+    version: 0.17
   Caroline::State:
     file: lib/Caroline.pm
   Term::ReadLine::Caroline:
@@ -42,12 +42,13 @@ requires:
   Storable: 0
   Term::ReadKey: 2.3
   Text::VisualWidth::PP: 0.03
+  Unicode::EastAsianWidth::Detect: 0.03
   perl: 5.008005
 resources:
   bugtracker: https://github.com/tokuhirom/Caroline/issues
   homepage: https://github.com/tokuhirom/Caroline
   repository: git://github.com/tokuhirom/Caroline.git
-version: 0.16
+version: 0.17
 x_contributors:
   - 'Ahmad M. Zawawi <ahmad.zawawi@gmail.com>'
   - 'mattn <mattn.jp@gmail.com>'
