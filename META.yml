@@ -3,18 +3,18 @@ abstract: 'Yet another line editing library '
 author:
   - 'tokuhirom <tokuhirom@gmail.com>'
 build_requires:
-  File::Temp: 0
-  Test::More: 0.98
+  File::Temp: '0'
+  Test::More: '0.98'
 configure_requires:
-  CPAN::Meta: 0
-  CPAN::Meta::Prereqs: 0
-  Module::Build: 0.38
+  CPAN::Meta: '0'
+  CPAN::Meta::Prereqs: '0'
+  Module::Build: '0.38'
 dynamic_config: 0
-generated_by: 'Minilla/v0.11.0, CPAN::Meta::Converter version 2.133380'
+generated_by: 'Minilla/v0.13.0, CPAN::Meta::Converter version 2.140640'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
+  version: '1.4'
 name: Caroline
 no_index:
   directory:
@@ -29,29 +29,30 @@ no_index:
 provides:
   Caroline:
     file: lib/Caroline.pm
-    version: 0.19
+    version: '0.20'
   Caroline::State:
     file: lib/Caroline.pm
   Term::ReadLine::Caroline:
     file: lib/Term/ReadLine/Caroline.pm
 recommends:
-  Term::ReadLine: 0
+  Term::ReadLine: '0'
 requires:
-  Class::Accessor::Lite: 0.05
-  IO::Handle: 0
-  POSIX: 0
-  Storable: 0
-  Term::Encoding: 0
-  Term::ReadKey: 2.3
-  Text::VisualWidth::PP: 0.03
-  Unicode::EastAsianWidth::Detect: 0.03
-  perl: 5.008005
+  Class::Accessor::Lite: '0.05'
+  IO::Handle: '0'
+  POSIX: '0'
+  Storable: '0'
+  Term::Encoding: '0'
+  Term::ReadKey: '2.3'
+  Text::VisualWidth::PP: '0.03'
+  Unicode::EastAsianWidth::Detect: '0.03'
+  perl: '5.008005'
 resources:
   bugtracker: https://github.com/tokuhirom/Caroline/issues
   homepage: https://github.com/tokuhirom/Caroline
   repository: git://github.com/tokuhirom/Caroline.git
-version: 0.19
+version: '0.20'
 x_contributors:
   - 'Ahmad M. Zawawi <ahmad.zawawi@gmail.com>'
-  - 'mattn <mattn.jp@gmail.com>'
   - 'moznion <moznion@gmail.com>'
+  - 'Hiroaki Yoshida <yoshidaster@gmail.com>'
+  - 'mattn <mattn.jp@gmail.com>'
